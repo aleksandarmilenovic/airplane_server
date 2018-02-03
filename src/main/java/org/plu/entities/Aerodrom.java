@@ -26,16 +26,12 @@ public class Aerodrom {
     @Column(nullable = false)
     private int maxGate;
 
-    @NotBlank
-    private String zauzetiGateovi;
-
     public Aerodrom(){}
 
     public Aerodrom(String naziv, int vremenskaZona, int maxGate, String zauzetiGateovi) {
         this.naziv = naziv;
         this.vremenskaZona = vremenskaZona;
         this.maxGate = maxGate;
-        this.zauzetiGateovi = zauzetiGateovi;
     }
 
     public int getId() {
@@ -68,14 +64,6 @@ public class Aerodrom {
 
     public void setMaxGate(int maxGate) {
         this.maxGate = maxGate;
-    }
-
-    public String getZauzetiGateovi() {
-        return zauzetiGateovi;
-    }
-
-    public void setZauzetiGateovi(String zauzetiGateovi) {
-        this.zauzetiGateovi = zauzetiGateovi;
     }
 
 

@@ -44,20 +44,13 @@ public class Let {
     @Column(nullable = false)
     private int gate; // polazak
 
+    @Column(nullable = false)
+    private int cena;
+
     public Let(){}
 
-    // operator unosi za let
-//    public Let(int brojLeta,int idAviona,int polaziste, int odrediste, int vremePolaska, int razdaljinaDestinacije) {
-//        this.brojLeta = brojLeta; // op
-//        this.idAviona = idAviona; // op
-//        this.polaziste = polaziste; // op
-//        this.odrediste = odrediste; // op
-//        this.vremePolaska = vremePolaska; // op
-//        this.razdaljinaDestinacije = razdaljinaDestinacije; // op
-//    }
-
     // sva polja
-    public Let(int brojLeta, int idAviona, int polaziste, int odrediste, long vremePolaska, long vremeDolaska, int vremePutovanja, int razdaljinaDestinacije, int gate) {
+    public Let(int brojLeta, int idAviona, int polaziste, int odrediste, long vremePolaska, long vremeDolaska, int vremePutovanja, int razdaljinaDestinacije, int gate, int cena) {
         this.brojLeta = brojLeta;
         this.idAviona = idAviona;
         this.polaziste = polaziste;
@@ -67,6 +60,7 @@ public class Let {
         this.vremePutovanja = vremePutovanja;
         this.razdaljinaDestinacije = razdaljinaDestinacije;
         this.gate = gate;
+        this.cena = cena;
     }
 
     public int getId() {
@@ -149,5 +143,14 @@ public class Let {
     public void setGate(int gate) {
         this.gate = gate;
     }
+
+    public int getCena() {
+        return cena;
+    }
+
+    public void setCena(int cena) {
+        this.cena = cena;
+    }
+
 
 }

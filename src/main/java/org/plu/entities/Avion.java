@@ -36,7 +36,7 @@ public class Avion {
     private int maksimalniDolet;
 
     @Column(nullable = false)
-    private int brzinaLetenja;
+    private int brzinaLetenja; //
 
     public Avion(){}
 

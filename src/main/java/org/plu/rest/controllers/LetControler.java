@@ -44,10 +44,11 @@ public class LetControler {
     }
 
     // http://localhost:8080/let/new/1/1/3/8/2017_12_23_14_23/900
-    @GetMapping("/new/{brojLeta}/{idAviona}/{polaziste}/{odrediste}/{vremePolaska}/{razdaljinaDestinacije}")
+    @GetMapping("/new/{brojLeta}/{idAviona}/{polaziste}/{odrediste}/{vremePolaska}/{razdaljinaDestinacije}/{cena}")
     public String addNew(@PathVariable(value = "brojLeta") int brojLeta,@PathVariable(value = "idAviona") int idAviona,
                          @PathVariable(value = "polaziste") int polaziste,@PathVariable(value = "odrediste") int odrediste,
-                         @PathVariable(value = "vremePolaska") String vremePolaska,@PathVariable(value = "razdaljinaDestinacije") int razdaljinaDestinacije){
+                         @PathVariable(value = "vremePolaska") String vremePolaska,@PathVariable(value = "razdaljinaDestinacije") int razdaljinaDestinacije,
+                         @PathVariable(value = "cena") int cena){
 
 
         Let let;
@@ -77,7 +78,7 @@ public class LetControler {
         // <<<<
 
 
-        let = new Let(brojLeta, idAviona, polaziste, odrediste, vremePolaskaSekunde, vremeDolaskaSekunde, vremePutovanjaSekunde, razdaljinaDestinacije,gate);
+        let = new Let(brojLeta, idAviona, polaziste, odrediste, vremePolaskaSekunde, vremeDolaskaSekunde, vremePutovanjaSekunde, razdaljinaDestinacije,gate,cena);
 
         if (let != null)
         {
