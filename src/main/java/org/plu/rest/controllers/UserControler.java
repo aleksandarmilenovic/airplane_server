@@ -76,8 +76,27 @@ public class UserControler {
         if(deleteUser == null){
             return ResponseEntity.notFound().build();
         }
+
+        if(deleteUser.getUsername().equalsIgnoreCase("ADMIN")){
+            return ResponseEntity.notFound().build();
+        }
+
         userRepository.delete(deleteUser);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/changepassword/{id}/{password}")
+    public ResponseEntity<User> changePassword(@PathVariable(value = "id") int id,@PathVariable(value = "password") String password){
+
+        User user = userRepository.findOne(id);
+
+        if(user == null){
+            return ResponseEntity.notFound().build();
+        }
+        user.setPassword(password);
+        User changePassUser = userRepository.save(user);
+        return ResponseEntity.ok(changePassUser);
+
     }
 
 
