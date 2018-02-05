@@ -43,7 +43,7 @@ public class LetControler {
         return "Success!!!";
     }
 
-    // http://localhost:8080/let/new/1/1/3/8/2017_12_23_14_23/900
+    // http://localhost:8080/let/new/1/1/3/8/2017_12_23_14_23/900/300
     @GetMapping("/new/{brojLeta}/{idAviona}/{polaziste}/{odrediste}/{vremePolaska}/{razdaljinaDestinacije}/{cena}")
     public String addNew(@PathVariable(value = "brojLeta") int brojLeta,@PathVariable(value = "idAviona") int idAviona,
                          @PathVariable(value = "polaziste") int polaziste,@PathVariable(value = "odrediste") int odrediste,
@@ -72,7 +72,7 @@ public class LetControler {
         if(gate == -1) return "Nema slobodnog gate na aerodromu, haha :(";
 
         // provera redosleda letenja -> isti avion ne moze sleteti u vremensku zonu -4, pa odma zatim poleteti iz vremenske zone 2
-        if(!proveraRedosledaLetenja(idAviona,vremePolaskaSekunde,vremenskaZona(polaziste), vremePutovanjaSekunde)) return "Pogresio si. Redosled letenja ti nije dobar tupane. Ne moze avion da poleti u toj vremenskoj zoni nakon. :(";
+        if(!proveraRedosledaLetenja(idAviona,vremePolaskaSekunde,vremenskaZona(polaziste), vremePutovanjaSekunde)) return "Pogresio si. Redosled letenja ti nije dobar. Ne moze avion da poleti u toj vremenskoj zoni. :(";
 
 //        if(true) return "" + vremePolaskaSekunde;
         // <<<<
