@@ -48,6 +48,11 @@ public class LetControler {
         return "Success!!!";
     }
 
+    @GetMapping("/findone/{id}")
+    public Let findOneLet(@PathVariable(value = "id")int id){
+        return letRepository.findOne(id);
+    }
+
     // http://localhost:8080/let/new/1/1/3/8/2017_12_23_14_23/900/300
     @GetMapping("/new/{brojLeta}/{idAviona}/{polaziste}/{odrediste}/{vremePolaska}/{razdaljinaDestinacije}/{cena}")
     public String addNew(@PathVariable(value = "brojLeta") int brojLeta,@PathVariable(value = "idAviona") int idAviona,
