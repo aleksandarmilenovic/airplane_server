@@ -8,6 +8,7 @@ import org.plu.entities.Aerodrom;
 import org.plu.entities.Avion;
 import org.plu.entities.Let;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,8 +50,12 @@ public class LetControler {
     }
 
     @GetMapping("/findone/{id}")
-    public Let findOneLet(@PathVariable(value = "id")int id){
-        return letRepository.findOne(id);
+    public ResponseEntity<Let> findOneLet(@PathVariable(value = "id")int id){
+        Let let = letRepository.getOne(id);
+        if(let == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().body(let);
     }
 
     // http://localhost:8080/let/new/1/1/3/8/2017_12_23_14_23/900/300
