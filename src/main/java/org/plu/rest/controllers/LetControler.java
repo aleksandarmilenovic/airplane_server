@@ -37,6 +37,11 @@ public class LetControler {
         return letRepository.findAll();
     }
 
+    @GetMapping("/allAerodromi")
+    public List<Aerodrom> getAllAerodrome(){
+        return aerodromRepository.findAll();
+    }
+
     @GetMapping("/delete/{idLeta}")
     public String delete(@PathVariable(value = "idLeta") int idLeta){
         letRepository.delete(idLeta);
