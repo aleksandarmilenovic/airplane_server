@@ -51,12 +51,6 @@ public class LetControler {
 
     @GetMapping("/findone/{id}")
     public Let findOneLet(@PathVariable(value = "id")int id){
-       /* Let let = letRepository.findOne(id);
-        if(let == null){
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().body(let);
-        */
         return letRepository.findOne(id);
     }
 
@@ -70,29 +64,26 @@ public class LetControler {
 
         Let let;
 
-        // automatski sracuna za let >>>>>
 
-        // vreme polaska
         long vremePolaskaSekunde = vremePolaskaSekunde(vremePolaska);
 
-        // brzina aviona
+
         int brzinaAviona = brzinaAviona(idAviona); // TODO
 
-        // vreme putovanja
+
         int vremePutovanjaSekunde = razdaljinaDestinacije / (brzinaAviona / 60) * 60; // izrazeno u sekundama
 
-        // vreme dolaska
+
         long vremeDolaskaSekunde = vremePolaskaSekunde + vremenskaZona(polaziste) * 3600 * -1 + vremePutovanjaSekunde + vremenskaZona(odrediste) * 3600; // izrazeno u sekundama TODO
 
-        // gate
+
         int gate = gate(polaziste, vremePolaskaSekunde); // TODO
         if(gate == -1) return "Nema slobodnog gate na aerodromu, haha :(";
 
-        // provera redosleda letenja -> isti avion ne moze sleteti u vremensku zonu -4, pa odma zatim poleteti iz vremenske zone 2
+
         if(!proveraRedosledaLetenja(idAviona,vremePolaskaSekunde,vremenskaZona(polaziste), vremePutovanjaSekunde)) return "Pogresio si. Redosled letenja ti nije dobar. Ne moze avion da poleti u toj vremenskoj zoni. :(";
 
-//        if(true) return "" + vremePolaskaSekunde;
-        // <<<<
+
 
 
         let = new Let(brojLeta, idAviona, polaziste, odrediste, vremePolaskaSekunde, vremeDolaskaSekunde, vremePutovanjaSekunde, razdaljinaDestinacije,gate,cena);
@@ -110,7 +101,7 @@ public class LetControler {
 
 
 
-    // >>>>>>>>>>>>>>> POMOCNE FUNKCIJE >>>>>>>>>>>>>>>>>>>>
+
     private long vremePolaskaSekunde(String vremePolaska)
     {
         String polazakGodina = vremePolaska.split("_")[0];
@@ -208,7 +199,6 @@ public class LetControler {
 
         return true;
     }
-    // <<<<<<<<<<<<<<<< POMOCNE FUNKCIJE <<<<<<<<<<<<<<<<
 
 }
 

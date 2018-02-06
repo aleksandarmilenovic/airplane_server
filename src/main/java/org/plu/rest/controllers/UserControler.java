@@ -6,7 +6,7 @@ import org.plu.entities.Note;
 import org.plu.entities.Privilegues;
 import org.plu.entities.User;
 import org.plu.rest.services.MailSender;
-import org.plu.rest.services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +21,7 @@ public class UserControler {
     @Autowired
     private UserRepository userRepository;
 
-    private UserService userService = new UserService();
+
 
     @GetMapping("/all")
     public List<User> getAllUsers(){
@@ -60,14 +60,6 @@ public class UserControler {
         return "SENT";
 
     }
-
-//    @GetMapping("/addNewOperater/{firstname}/{lastname}/{username}/{password}")
-//    public String addNewOperater(@PathVariable(value = "firstname") String firstname,@PathVariable(value = "lastname") String lastname,
-//                                 @PathVariable(value = "username") String username,@PathVariable(value = "password") String password){
-//
-//        User user = new User()
-//
-//    }
 
     @GetMapping("/delete/{id}")
     public ResponseEntity<Note> deleteUser(@PathVariable(value = "id") int id){
