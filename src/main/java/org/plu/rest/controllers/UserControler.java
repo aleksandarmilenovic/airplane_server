@@ -99,6 +99,69 @@ public class UserControler {
 
     }
 
+    @GetMapping("/checkjmbg/{jmbg}")
+    public static String isJMBGOk(@PathVariable(value = "jmbg") String jmbg) {
+        if(jmbg.length() != 12){
+            return  "false";
+        }
+        String s = "";
+        String input = jmbg.substring(0, jmbg.length() - 1);
+        int i = 0, i1 = 0, diff = 0;
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(0))).intValue() * 7);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(1))).intValue() * 6);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(2))).intValue() * 5);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(3))).intValue() * 4);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(4))).intValue() * 3);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(5))).intValue() * 2);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(6))).intValue() * 7);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(7))).intValue() * 6);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(8))).intValue() * 5);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(9))).intValue() * 4);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(10))).intValue() * 3);
+        i = i + (Integer.valueOf(String.valueOf(jmbg.charAt(11))).intValue() * 2);
+        i1 = i;
+        i = i / 11;
+        diff = i1 - (i * 11);
+        if ((diff == 0) || (diff == 1)) {
+            s = input + 0;
+        } else {
+            s = input + (11 - diff);
+        }
+        //return s.equals(jmbg);
+        if(s.equals(jmbg)){
+            return "true";
+        }else{
+            return "false";
+        }
+    }
+
+    @GetMapping("/checkcard/{card}")
+    public String check(@PathVariable(value = "card") String card){
+        int s1 = 0;
+        int s2 = 0;
+        int s3 = 0;
+        char[] niz = card.toCharArray();
+        for(int i = 0;i<niz.length;i++) {
+            if(i % 2 == 0) {
+                s2 = Integer.parseInt(""+niz[i])*2+ s2;
+                s3 = Integer.parseInt(""+niz[i])+s3;
+            }else {
+                s1 = s1 + Integer.parseInt(""+niz[i])*2;
+            }
+        }
+
+        if(s2 > 9) {
+            s1 = s1+s2;
+        }else {
+            s1 = s1+s3;
+        }
+
+        if(s1 % 10 == 0) {
+            return "true";
+        }
+        return "false";
+
+    }
 
     }
 
