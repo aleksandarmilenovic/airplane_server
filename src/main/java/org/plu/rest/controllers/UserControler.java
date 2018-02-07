@@ -93,7 +93,7 @@ public class UserControler {
 
     @GetMapping("/checkjmbg/{jmbg}")
     public static String isJMBGOk(@PathVariable(value = "jmbg") String jmbg) {
-        if(jmbg.length() != 12){
+        if(jmbg.length() != 13){
             return  "false";
         }
         String s = "";

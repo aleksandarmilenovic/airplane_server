@@ -44,9 +44,15 @@ public class Karta {
     @Column(nullable = false)
     private long veremeleta;
 
+    @Column(nullable = false)
+    private int odrediste;
+
+    @Column(nullable = false)
+    private int razdaljinaDestinacije;
+
     public Karta(){}
 
-    public Karta(int userid, String korisnik, String card, String jmbg, int idleta, int sediste, String status, long vremerezervacije, long veremeleta) {
+    public Karta(int userid, String korisnik, String card, String jmbg, int idleta, int sediste, String status, long vremerezervacije, long veremeleta, int odrediste, int razdaljinaDestinacije) {
         this.userid = userid;
         this.korisnik = korisnik;
         this.card = card;
@@ -56,6 +62,8 @@ public class Karta {
         this.status = status;
         this.vremerezervacije = vremerezervacije;
         this.veremeleta = veremeleta;
+        this.odrediste = odrediste;
+        this.razdaljinaDestinacije = razdaljinaDestinacije;
     }
 
     public int getId() {
@@ -136,5 +144,21 @@ public class Karta {
 
     public void setVeremeleta(int veremeleta) {
         this.veremeleta = veremeleta;
+    }
+
+    public int getOdrediste() {
+        return odrediste;
+    }
+
+    public void setOdrediste(int odrediste) {
+        this.odrediste = odrediste;
+    }
+
+    public int getRazdaljinaDestinacije() {
+        return razdaljinaDestinacije;
+    }
+
+    public void setRazdaljinaDestinacije(int razdaljinaDestinacije) {
+        this.razdaljinaDestinacije = razdaljinaDestinacije;
     }
 }

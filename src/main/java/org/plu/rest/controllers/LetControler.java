@@ -2,10 +2,12 @@ package org.plu.rest.controllers;
 
 
 import org.plu.dao.LetRepository;
+import org.plu.dao.KartaRepository;
 import org.plu.dao.AerodromRepository;
 import org.plu.dao.AvionRepository;
 import org.plu.entities.Aerodrom;
 import org.plu.entities.Avion;
+import org.plu.entities.Karta;
 import org.plu.entities.Let;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +28,9 @@ public class LetControler {
 
     @Autowired
     private AvionRepository avionRepository;
+
+    @Autowired
+    private KartaRepository kartaRepository;
 
     @Autowired
     private AerodromRepository aerodromRepository;
@@ -52,6 +57,31 @@ public class LetControler {
     @GetMapping("/findone/{id}")
     public Let findOneLet(@PathVariable(value = "id")int id){
         return letRepository.findOne(id);
+    }
+
+    @GetMapping("/statistika/{idLeta}")
+    public String addNew(@PathVariable(value = "idLeta") int idLeta){
+
+        List<Karta> karte = kartaRepository.findAll();
+        int rezervisanaSedista = 0;
+        int kupljenaSedista = 0;
+
+        for(Karta k : karte)
+        {
+            if(k.getIdleta() == idLeta)
+            {
+                if(k.getStatus().equals("REZERVISANO") )
+                {
+                    rezervisanaSedista++;
+                }
+                else if (k.getStatus().equals("KUPLJENO"))
+                {
+                    kupljenaSedista++;
+                }
+            }
+        }
+
+        return "Za let: " + idLeta + ", rezervisanih sedista: " + rezervisanaSedista + ", kupljenih sedista: " + kupljenaSedista;
     }
 
     // http://localhost:8080/let/new/1/1/3/8/2017_12_23_14_23/900/300

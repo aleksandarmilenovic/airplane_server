@@ -22,12 +22,13 @@ public class KartaControler {
     @Autowired
     private KartaRepository kartaRepository;
 
-    @GetMapping("/new/{userid}/{korisnik}/{card}/{jmbg}/{idleta}/{sediste}/{status}/{vremerezervacije}/{veremeleta}")
+    @GetMapping("/new/{userid}/{korisnik}/{card}/{jmbg}/{idleta}/{sediste}/{status}/{vremerezervacije}/{veremeleta}/{odrediste}/{razdaljinaDestinacije}")
     private String addNew(@PathVariable(value = "userid") int userid,@PathVariable(value = "korisnik") String korisnik,
                           @PathVariable(value = "card")String card,@PathVariable(value = "jmbg") String jmbg,
                           @PathVariable(value = "idleta") int idleta,@PathVariable(value = "sediste") int sediste,
                           @PathVariable(value = "status") String status,@PathVariable(value = "vremerezervacije") long vremerezervacije,
-                          @PathVariable(value = "veremeleta") long veremeleta){
+                          @PathVariable(value = "veremeleta") long veremeleta,
+                          @PathVariable(value = "odrediste") int odrediste, @PathVariable(value = "razdaljinaDestinacije") int razdaljinaDestinacije){
 
 
         List<Karta> karte = kartaRepository.findAll();
@@ -58,7 +59,7 @@ public class KartaControler {
             status  = "ODUSTAO";
         }
 
-        Karta karta = new Karta(userid,korisnik,card,jmbg,idleta,sediste,status,vremerezervacije,veremeleta);
+        Karta karta = new Karta(userid,korisnik,card,jmbg,idleta,sediste,status,vremerezervacije,veremeleta, odrediste, razdaljinaDestinacije);
 
         if(karta!=null){
             kartaRepository.save(karta);
